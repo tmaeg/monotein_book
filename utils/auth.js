@@ -7,7 +7,7 @@ const auth = (req, res, next) => {
   }
   const token = /*await?*/req.headers.authorization.split(' ')[1]
   if(!token) {
-    return res.send(400).json({
+    return res.status(400).json({
       message: 'トークンが見つかりません！',
     })
   }
@@ -16,7 +16,7 @@ const auth = (req, res, next) => {
     req.body.email = decoded.email
     return next()
   } catch(err) {
-    return res.send(400).json({
+    return res.status(400).json({
       message: 'トークンが正しくありません！',
     })
   }
